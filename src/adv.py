@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 import textwrap
 
 # Declare all the rooms
@@ -51,17 +52,26 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
-textwrapper = textwrap.TextWrapper(width=80)
-current_room = room["outside"]
-current_description = textwrapper.wrap(text=current_room.description)
+name = input('What is your name?    ')
+player = Player(str(name), room["outside"])
 
 
-def return_description(wrapped_description):
+def print_description(description):
+    textwrapper = textwrap.TextWrapper(width=80)
+    wrapped_description = textwrapper.wrap(text=description)
     for line in wrapped_description:
-        return line
+        print(f"{line}\n")
+
+
+def print_items_list(item_list):
+    if item_list:
+        for item in item_list:
+            print(f"{item}")
 
 
 while True:
     print(
-        f"Current Location:\n{current_room.name}\n\n{return_description(current_description)}")
+        f"\n---{player.name}'s progress---\nCurrent Location: {player.location.name}\n\n")
+    print_description(player.location.description)
+    print(f"Room Items: {print_items_list(player.location.items)}")
     break
