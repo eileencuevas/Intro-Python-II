@@ -1,6 +1,5 @@
 from room import Room
 from player import Player
-import textwrap
 
 # Declare all the rooms
 
@@ -56,22 +55,20 @@ name = input('What is your name?    ')
 player = Player(str(name), room["outside"])
 
 
-def print_description(description):
-    textwrapper = textwrap.TextWrapper(width=80)
-    wrapped_description = textwrapper.wrap(text=description)
-    for line in wrapped_description:
-        print(f"{line}\n")
-
-
-def print_items_list(item_list):
-    if item_list:
-        for item in item_list:
-            print(f"{item}")
+def action_handler(action):
+    if action == 'items':
+        player.location.print_items_list()
+    # else:
+    #     player.move_location(action)
 
 
 while True:
     print(
         f"\n---{player.name}'s progress---\nCurrent Location: {player.location.name}\n\n")
-    print_description(player.location.description)
-    print(f"Room Items: {print_items_list(player.location.items)}")
-    break
+    player.location.print_description()
+    print(f"Room Items: {player.location.print_items_list()}")
+    action = input('What would you like to do?    ')
+    if action == 'q':
+        break
+    else:
+        action_handler(action)
