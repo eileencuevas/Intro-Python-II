@@ -58,6 +58,8 @@ player = Player(str(name), room["outside"])
 def action_handler(action):
     if action == 'items':
         print(f"\n{player.location.return_items_list()}")
+    elif action == 'inventory':
+        print(f"\n{player.check_inventory()}")
     else:
         player.move_to(action)
 
