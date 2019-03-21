@@ -34,3 +34,9 @@ class Room:
                 print(f"\n{item.name}: {item.description}")
         else:
             print("No items")
+
+    def remove_item(self, item):
+        self.items.remove(item)
+
+    def add_item(self, item):
+        self.items.append(item)
