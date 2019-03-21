@@ -57,16 +57,16 @@ player = Player(str(name), room["outside"])
 
 def action_handler(action):
     if action == 'items':
-        player.location.print_items_list()
-    # else:
-    #     player.move_location(action)
+        print(f"\n{player.location.return_items_list()}")
+    else:
+        player.move_to(action)
 
 
 while True:
     print(
         f"\n---{player.name}'s progress---\nCurrent Location: {player.location.name}\n\n")
     player.location.print_description()
-    print(f"Room Items: {player.location.print_items_list()}")
+    print(f"\nRoom Items: {player.location.return_items_list()}")
     action = input('What would you like to do?    ')
     if action == 'q':
         break
