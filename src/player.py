@@ -13,10 +13,10 @@ class Player:
 
     def check_inventory(self):
         if len(self.items) == 0:
-            return f"No items in inventory!"
+            print(f"No items in inventory!")
         else:
             for item in self.items:
-                return item
+                print(f"\n{item.name}: {item.description}")
 
     def move_to(self, direction):
         if direction in ["n", "s", "e", "w"]:
@@ -29,6 +29,6 @@ class Player:
             elif direction == "w" and hasattr(self.location, 'w_to'):
                 self.location = self.location.w_to
             else:
-                print(f"{self.name} walks into a wall! Try another direction.")
+                print(f"\n{self.name} walks into a wall! Try another direction.")
         else:
-            print('Not a valid direction! Try n, s, e, or w!')
+            print('\nNot a valid direction! Try n, s, e, or w!')
