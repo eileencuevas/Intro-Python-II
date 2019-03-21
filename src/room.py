@@ -8,15 +8,20 @@ class Room:
     def __init__(self, name, description, items=None):
         self.name = name
         self.description = description
-        self.items = items
+        if items is not None:
+            self.items = items
+        else:
+            self.items = []
 
     def print_description(self):
         textwrapper = textwrap.TextWrapper(width=80)
         wrapped_description = textwrapper.wrap(text=self.description)
         for line in wrapped_description:
-            print(f"{line}\n")
+            print(f"{line}")
 
-    def print_items_list(self):
-        if self.items:
+    def return_items_list(self):
+        if len(self.items) > 0:
             for item in self.items:
-                print(f"{item}")
+                return item
+        else:
+            return "No items"
