@@ -3,9 +3,20 @@
 
 
 class Player:
-    def __init__(self, name, location):
+    def __init__(self, name, location, items=None):
         self.name = name
         self.location = location
+        if items is not None:
+            self.items = items
+        else:
+            self.items = []
+
+    def check_inventory(self):
+        if len(self.items) == 0:
+            return f"No items in inventory!"
+        else:
+            for item in self.items:
+                return item
 
     def move_to(self, direction):
         if direction in ["n", "s", "e", "w"]:
