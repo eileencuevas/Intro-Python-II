@@ -60,12 +60,17 @@ player = Player(str(name), room["outside"])
 
 def action_handler(action):
     if len(action) > 1:  # support for two words
-        print('\nThis is a two word command! Support comming soon!')
+        if action[0] == 'take':
+            player.acquire_item(action[1])
+        elif action[0] == 'drop':
+            player.leave_item(action[1])
+        else:
+            print("\nThis command isn't supported! Try another.")
     else:  # action only has one word
         if action[0] == 'items':
             player.location.print_items()
-        elif action[0] == 'inventory':
-            print(f"\n{player.check_inventory()}")
+        elif action[0] == 'inventory' or action[0] == 'i':
+            player.check_inventory()
         else:
             player.move_to(action[0])
 
@@ -76,7 +81,7 @@ while True:
     player.location.print_description()
     print(f"\nRoom Items: {player.location.return_items_list()}")
     action = input('What would you like to do?\n    ')
-    if action == 'q':
+    if action == 'q' or action == 'quit':
         break
     else:
         action_handler(action.split())
