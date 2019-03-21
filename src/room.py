@@ -5,9 +5,10 @@ import textwrap
 
 
 class Room:
-    def __init__(self, name, description, items=None):
+    def __init__(self, name, description, is_light, items=None):
         self.name = name
         self.description = description
+        self.is_light = is_light
         if items is not None:
             self.items = items
         else:
@@ -40,3 +41,9 @@ class Room:
 
     def add_item(self, item):
         self.items.append(item)
+
+    def locate_lamp(self):
+        for item in self.items:
+            if item.name == 'Lamp':
+                return print(f"You feel as if there is a Lamp nearby...")
+        return print(f"You don't think that there's a Lamp nearby...")
